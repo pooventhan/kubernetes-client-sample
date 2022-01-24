@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "noImplicitAny": false,
+      "noImplicitThis": true,
+      "strictBindCallApply": false,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictPropertyInitialization": false,
+      "alwaysStrict": true
+    }
+  }
