@@ -16,10 +16,12 @@ async function main(): Promise<void>{
     console.log("Loading config from file...");
     kc.loadFromFile('/root/.kube/config');
 
-    const contexts = kc.getContexts();
-    contexts.forEach(context => {
-        console.log(`Context name: ${context.name}`);
-    });
+    console.log("Setting current context to dev-dell...");
+    kc.setCurrentContext('dev-dell');
+    // const contexts = kc.getContexts();
+    // contexts.forEach(context => {
+    //     console.log(`Context name: ${context.name}`);
+    // });
 
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
