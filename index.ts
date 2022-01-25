@@ -13,13 +13,17 @@ async function main(): Promise<void>{
 
     const kc = new k8s.KubeConfig();
     //kc.loadFromDefault();
+    console.log("Loading config from file...");
     kc.loadFromFile('/root/.kube/config');
 
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
+    console.log("Getting the list of deployments...");
     const deploymentResponse = await k8sApi.listNamespacedDeployment('dev-dell');
+    const deploymentList = deploymentResponse.body.items;
+    console.log(`Found ${deploymentList.length} deployments.`);
 
-    deploymentResponse.body.items.forEach(deployment => {
+    deploymentList.forEach(deployment => {
         console.log(`${deployment.metadata?.name} : ${getImageVersion(deployment.spec?.template?.spec?.containers?.[0]?.image)}`);
     });
 }
