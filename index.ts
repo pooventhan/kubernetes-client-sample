@@ -19,7 +19,8 @@ async function main(): Promise<void>{
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
     console.log("Getting the list of deployments...");
-    const deploymentResponse = await k8sApi.listNamespacedDeployment('default');
+    //const deploymentResponse = await k8sApi.listNamespacedDeployment('dev-dell');
+    const deploymentResponse = await k8sApi.listDeploymentForAllNamespaces();
     const deploymentList = deploymentResponse.body.items;
     console.log(`Found ${deploymentList.length} deployments.`);
 
