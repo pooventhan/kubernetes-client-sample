@@ -1,8 +1,10 @@
 import * as k8s from '@kubernetes/client-node';
 
-main().then(() => {
+main()
+.then(() => {
     console.log('execution complete.');
-}).catch(err => { 
+})
+.catch(err => { 
     console.error(err);
     process.exitCode = 1;
 });
@@ -10,7 +12,8 @@ main().then(() => {
 async function main(): Promise<void>{
 
     const kc = new k8s.KubeConfig();
-    kc.loadFromDefault();
+    //kc.loadFromDefault();
+    kc.loadFromFile('/root/.kube/config');
 
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
