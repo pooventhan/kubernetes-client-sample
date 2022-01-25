@@ -16,6 +16,11 @@ async function main(): Promise<void>{
     console.log("Loading config from file...");
     kc.loadFromFile('/root/.kube/config');
 
+    const contexts = kc.getContexts();
+    contexts.forEach(context => {
+        console.log(`Context name: ${context.name}`);
+    });
+
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
     console.log("Getting the list of deployments...");
