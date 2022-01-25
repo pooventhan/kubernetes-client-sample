@@ -14,7 +14,7 @@ async function main(): Promise<void>{
     const kc = new k8s.KubeConfig();
     //kc.loadFromDefault();
     console.log("Loading config from file...");
-    kc.loadFromFile('/root/.kube/config');
+    kc.loadFromFile('/root/.kube/configs');
 
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
