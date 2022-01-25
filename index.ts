@@ -14,12 +14,12 @@ async function main(): Promise<void>{
     const kc = new k8s.KubeConfig();
     //kc.loadFromDefault();
     console.log("Loading config from file...");
-    kc.loadFromFile('/root/.kube/configs');
+    kc.loadFromFile('/root/.kube/config');
 
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
     console.log("Getting the list of deployments...");
-    const deploymentResponse = await k8sApi.listNamespacedDeployment('dev-dell');
+    const deploymentResponse = await k8sApi.listNamespacedDeployment('default');
     const deploymentList = deploymentResponse.body.items;
     console.log(`Found ${deploymentList.length} deployments.`);
 
